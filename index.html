@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Khan - Creative Portfolio & Printing Services</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f2f2f2;
+            --white: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent-yellow: #ffb703;
+            --accent-dark: #212529;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Container Frame Style with Entrance Animation */
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            animation: fadeInContainer 1s ease-out;
+        }
+
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top Navigation Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-box img {
+            height: 85px; /* Increased logo size for clear visibility */
+            max-width: 250px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-box img:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-yellow);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-yellow);
+        }
+
+        /* Mobile Hamburger Toggle Button */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent-dark);
+        }
+
+        /* Hero Header Section */
+        .hero-section {
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background: #f8f9fa;
+        }
+
+        .hero-title-box {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-title-box span {
+            background: var(--accent-yellow);
+            color: #000;
+            padding: 5px 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title-box h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-top: 15px;
+            color: var(--accent-dark);
+        }
+
+        .hero-title-box h1 span {
+            background: transparent;
+            color: var(--text-muted);
+            padding: 0;
+        }
+
+        /* Hero Profile Graphic without Box/Border and Animated */
+        .hero-profile-graphic {
+            text-align: center;
+            animation: slideInRight 1s ease-out, floatAnimation 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .hero-profile-graphic img {
+            width: 100%;
+            max-height: 340px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.12));
+        }
+
+        .hero-profile-graphic h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 15px;
+            color: var(--accent-dark);
+        }
+
+        .hero-profile-graphic p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Layouts */
+        .section-block {
+            padding: 60px 50px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-heading {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--accent-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-heading i {
+            color: var(--accent-yellow);
+        }
+
+        /* About & Bio Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-img-box img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.4s ease;
+        }
+
+        .about-img-box img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            background: var(--accent-dark);
+            display: inline-block;
+            padding: 2px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 0.98rem;
+        }
+
+        /* Team Cards Area */
+        .team-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .team-box {
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .team-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-yellow);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .team-box img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent-yellow);
+            transition: transform 0.4s ease;
+        }
+
+        .team-box:hover img {
+            transform: scale(1.08);
+        }
+
+        .team-box h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .team-box span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Table of Content Interactive Cards Style */
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .toc-card {
+            background: var(--accent-yellow);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.3);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .toc-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(255, 183, 3, 0.5);
+        }
+
+        .toc-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            color: var(--accent-dark);
+            transition: transform 0.3s ease;
+        }
+
+        .toc-card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .toc-card h4 {
+            font-size: 1.1rem;
+        }
+
+        /* Services Grid Style */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 14px;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-yellow);
+            background: var(--white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .service-card i {
+            font-size: 1.8rem;
+            color: var(--accent-dark);
+            background: var(--accent-yellow);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover i {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .service-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Clients Section */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .client-item {
+            background: #f8f9fa;
+            border: 1px dashed var(--border-color);
+            height: 120px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .client-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .client-item span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .client-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+            background: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Contact Section Style */
+        .contact-section {
+            background: var(--accent-dark);
+            color: var(--white);
+            padding: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+        }
+
+        .contact-section p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .btn-whatsapp {
+            background: var(--accent-yellow);
+            color: #000;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.6);
+        }
+
+        /* Footer & Developer Credits */
+        footer {
+            background: #111;
+            color: #aaa;
+            padding: 30px 50px;
+            text-align: center;
+            font-size: 0.88rem;
+        }
+
+        .dev-info {
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .dev-info span {
+            color: var(--accent-yellow);
+        }
+
+        .dev-socials {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .dev-socials a {
+            background: #222;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+
+        .dev-socials a:hover {
+            background: var(--accent-yellow);
+            color: #000;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        /* Responsive Media Queries for Mobile Friendliness */
+        @media (max-width: 992px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 40px 25px;
+            }
+            .hero-title-box h1 {
+                font-size: 3rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 15px 25px;
+            }
+            .section-block {
+                padding: 40px 25px;
+            }
+            .contact-section {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                border-bottom: 1px solid var(--border-color);
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                text-align: center;
+                gap: 20px;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .hero-title-box h1 {
+                font-size: 2.3rem;
+            }
+            .logo-box img {
+                height: 65px;
+            }
+            .portfolio-container {
+                margin: 10px;
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="portfolio-container">
+
+    <!-- Header -->
+    <header>
+        <div class="logo-box">
+            <img src="Logo.png" alt="Ali Khan Logo">
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Header Portfolio Intro -->
+    <section class="hero-section">
+        <div class="hero-title-box">
+            <span>Creative Visual Portfolio</span>
+            <h1>PORTFOLIO. <span>2026</span></h1>
+            <p style="color: var(--text-muted); margin-top: 15px;">Welcome to Ali Khan Graphic, Printing & Wedding Shots. Bringing your ideas to life with professional design, large-format printing, and cinematic wedding mastery.</p>
+        </div>
+        <!-- Ali Khan No BG.png without border/card styling and with floating animation -->
+        <div class="hero-profile-graphic">
+            <img src="Ali Khan No BG.png" alt="Ali Khan CEO">
+            <h3>Ali Khan</h3>
+            <p>CEO, Head Designer & Wedding Shot Expert</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-block">
+        <h2 class="section-heading"><i class="fas fa-user-tie"></i> About Us</h2>
+        <div class="about-grid">
+            <div class="about-img-box">
+                <img src="Ali Khan.png" alt="Ali Khan Workspace">
+            </div>
+            <div class="about-content">
+                <h3>HELLO.</h3>
+                <p>I'm <strong>Ali Khan</strong>, a professional graphic designer, media expert, and wedding photographer with extensive experience in visual arts. I love creating visuals that don't just look good—they tell a story.</p>
+                <p>From custom branding, panaflex printing, and social media campaigns to specialized Umrah advertising and high-end wedding shoots, we connect ideas with people in a creative way.</p>
+                
+                <div style="margin-top: 25px;">
+                    <p><strong><i class="fas fa-map-marker-alt" style="color:var(--accent-yellow)"></i> Location:</strong> UG-67 G Deans Trade Center Peshawar Cantt</p>
+                    <p><strong><i class="fab fa-whatsapp" style="color:var(--accent-yellow)"></i> WhatsApp:</strong> +92 315 0526344</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Row -->
+        <div class="team-row" id="team">
+            <div class="team-box">
+                <img src="Ali Khan.png" alt="Ali Khan">
+                <h4>Ali Khan</h4>
+                <span>CEO & Head Designer</span>
+            </div>
+            <div class="team-box">
+                <img src="Salman Khan.jpeg" alt="Salman Khan">
+                <h4>Salman Khan</h4>
+                <span>Graphic Designer</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Content / Service Cards Grid -->
+    <section class="section-block">
+        <h2 class="section-heading"><i class="fas fa-th-large"></i> Table Of Content</h2>
+        <div class="toc-grid">
+            <div class="toc-card" onclick="location.href='#services'">
+                <i class="fas fa-paint-brush"></i>
+                <h4>Graphic Design</h4>
+            </div>
+            <div class="toc-card" onclick="location.href='#services'">
+                <i class="fas fa-camera"></i>
+                <h4>Wedding Shots</h4>
+            </div>
+            <div class="toc-card" onclick="location.href='#services'">
+                <i class="fas fa-print"></i>
+                <h4>Printing Solutions</h4>
+            </div>
+            <div class="toc-card" onclick="location.href='#services'">
+                <i class="fas fa-bullhorn"></i>
+                <h4>Digital Advertising</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Detailed Grid -->
+    <section id="services" class="section-block">
+        <h2 class="section-heading"><i class="fas fa-layer-group"></i> Services Offered</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-print"></i>
+                <h4>Panaflex Design & Printing</h4>
+                <p>Large-format outdoor advertising and high-resolution panaflex display prints.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-pen-nib"></i>
+                <h4>Logo Design</h4>
+                <p>Custom, unique visual branding solutions tailored to set your business apart.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-image"></i>
+                <h4>Poster Design</h4>
+                <p>Eye-catching promotional event posters built for maximum impact.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-id-card"></i>
+                <h4>Visiting Card Design</h4>
+                <p>Sleek, professional business cards that leave lasting impressions.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-file-invoice"></i>
+                <h4>Letter Head Design & Printing</h4>
+                <p>Professional corporate identity stationery printing services.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-share-alt"></i>
+                <h4>Social Media Advertising</h4>
+                <p>Targeted creative digital campaigns to grow your brand footprint online.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-kaaba"></i>
+                <h4>Umrah Advertising</h4>
+                <p>Specialized media design and travel promotional campaigns.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-camera-retro"></i>
+                <h4>Wedding Shots</h4>
+                <p>Cinematic wedding photography capturing your most precious life moments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="section-block">
+        <h2 class="section-heading"><i class="fas fa-handshake"></i> Valued Clients</h2>
+        <div class="clients-grid">
+            <!-- Client 1 -->
+            <div class="client-item">
+                <img src="Client-01.jpeg" alt="Client 01">
+            </div>
+            <!-- Client Slots 2-10 -->
+            <div class="client-item"><span>Client Slot 02</span></div>
+            <div class="client-item"><span>Client Slot 03</span></div>
+            <div class="client-item"><span>Client Slot 04</span></div>
+            <div class="client-item"><span>Client Slot 05</span></div>
+            <div class="client-item"><span>Client Slot 06</span></div>
+            <div class="client-item"><span>Client Slot 07</span></div>
+            <div class="client-item"><span>Client Slot 08</span></div>
+            <div class="client-item"><span>Client Slot 09</span></div>
+            <div class="client-item"><span>Client Slot 10</span></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div>
+            <h2>Let's Work Together</h2>
+            <p><i class="fas fa-map-marker-alt"></i> UG-67 G Deans Trade Center Peshawar Cantt &nbsp;|&nbsp; <i class="fab fa-whatsapp"></i> +92 315 0526344</p>
+        </div>
+        <a href="https://wa.me/923150526344" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+    </section>
+
+    <!-- Footer & Developer Information -->
+    <footer>
+        <p>&copy; 2026 Ali Khan Graphic, Printing & Wedding Shots. All Rights Reserved.</p>
+        <div class="dev-info">
+            Website Developed by <span>Muhammad Shahzeb</span> of <span>Brandora</span>
+            <div class="dev-socials">
+                <a href="https://www.facebook.com/brandora.us" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/brandora.us" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@brandora.us" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/923119031258" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<!-- JavaScript for Mobile Menu Toggle -->
+<script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+
+    mobileMenu.addEventListener('click', () => {
+        navList.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link on mobile
+    document.querySelectorAll('nav ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+        });
+    });
+</script>
+
+</body>
+</html>
